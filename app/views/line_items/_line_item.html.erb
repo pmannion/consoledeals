@@ -1,0 +1,6 @@
+
+    <tr>
+      <td class="span1"><%= line_item.quantity %>&times;</td>
+      <td class="span12"><%= line_item.product.name %></td>
+      <td class="span12"><%= number_to_currency(line_item.total_price, unit: "€") %></td>
+    </tr>

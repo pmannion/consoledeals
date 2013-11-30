@@ -1,0 +1,55 @@
+<div id="labelwrapper">
+  <div class="span5">Display product</div>
+  <div class="span7"><%= f.input :display, as: :radio_buttons, label: false, required: true, :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Company Name</div>
+  <div class="span7"><%= f.collection_select :supplier_id, Supplier.all, :id, :name, label: false, required: true , include_blank: "Please select a supplier" %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Address line 1</div>
+  <div class="span7"><%= f.input :add_1, label: false, required: true, prompt: "Please select one"  %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Street</div>
+  <div class="span7"><%= f.input :street, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Town</div>
+  <div class="span7"><%= f.input :town, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">City</div>
+  <div class="span7"><%= f.input :city, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Email</div>
+  <div class="span7"><%= f.input :email, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Longitude</div>
+  <div class="span7"><%= f.input :long, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Lattitude</div>
+  <div class="span7"><%= f.input :lat, label: false, required: false %>
+  </div>
+</div>
+
+<%= f.submit "Next", class: "btn btn-success" %>

@@ -1,0 +1,146 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require jquery.ui.all
+ *= require_tree .
+*/
+      body{
+    background-color: #003bb3;
+      }
+ .footer{
+     margin-top:130px;
+     height: 100px;
+     background: #45484d; /* Old browsers */
+     background: -moz-linear-gradient(top,  #45484d 0%, #000000 93%); /* FF3.6+ */
+     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(93%,#000000)); /* Chrome,Safari4+ */
+     background: -webkit-linear-gradient(top,  #45484d 0%,#000000 93%); /* Chrome10+,Safari5.1+ */
+     background: -o-linear-gradient(top,  #45484d 0%,#000000 93%); /* Opera 11.10+ */
+     background: -ms-linear-gradient(top,  #45484d 0%,#000000 93%); /* IE10+ */
+     background: linear-gradient(to bottom,  #45484d 0%,#000000 93%); /* W3C */
+     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+ ;
+ }
+td{
+    height:20px;
+    padding-top:5px;
+
+}
+
+.btn{
+    color:white;
+}
+
+.cart-td > td{
+    height:10px;
+}
+#labelwrapper {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#header{
+    height:220px;
+    background-color: #117D10;
+    margin-bottom:7px;
+}
+#myCarousel {
+    padding-top:30px;
+
+}
+
+.carousel-inner{
+    padding-left:120px;
+}
+
+.center{
+    text-align: center;
+}
+
+#cart-dropdown{
+    width:250px;
+    border:2px solid cadetblue;;
+}
+
+.admin-box{
+    background-color: lightblue;
+}
+
+.admin-text{
+    color:darkblue;
+}
+
+.btn{
+    margin-top: 5px;
+}
+
+#submit-gift-button{
+    margin-top:20px;
+}
+
+.hero-unit{
+
+    box-shadow: 7px 10px 5px #888;
+}
+
+.blue-heading{
+    font-family: helvetica;
+    color: #50B6D4;
+    text-shadow: 2px 2px 3px cadetblue;
+}
+
+.tandc{
+    font-size: 0.6em;
+}
+
+.center{
+    text-align: center;
+}
+
+.input > .integer{
+    width:8em;
+}
+
+#giftsearch_show_games{
+    width:10em;
+}
+
+#giftsearch_console_id{
+    width:10em;
+}
+
+#refine_consoles{
+
+}
+
+#advert-row{
+padding-bottom: 30px;
+
+}
+
+#empty-text{
+    position:absolute;
+    font-size: 2em;
+    color:cadetblue;
+    text-align:center;
+    margin-top:100px;
+}
+
+.push-down{
+    margin-top: 60px;
+}
+
+.red{
+    color:red;
+    font-weight: bold;
+}
+
+li{
+    list-style-type:none;
+}
+
+

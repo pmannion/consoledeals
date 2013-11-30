@@ -1,0 +1,22 @@
+<% content_for :title do %>Consoles<% end %>
+<% content_for :header do %> <%= stylesheet_link_tag %><% end %>
+<div class="container" id="generic">
+  <div class="row-fluid">
+    <h1><%= @consoles.size if @consoles %> Active Consoles</h1>
+  </div>
+
+  <div class="span12">
+    <div class="span3"><%= link_to "Create Console" , create_console_path, class: "btn btn-large btn-success"%></div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="tab-pane">
+      <table class="table table-hover">
+        <tbody>
+        <%= render :partial => 'heading' %>
+        <%= render :partial => 'console', :collection => @consoles %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<%= content_for :title do %>New Supplier<% end %>
+
+<div class="container" id="generic">
+  <div class="row-fluid">
+    <h1 id="h1-override">You are creating a new supplier</h1>
+    <div class="hero-unit">
+      <div class="errors">
+
+      </div>
+      <div class="row-fluid">
+        <%= simple_form_for (@supplier), url: create_supplier_path  do |f| %>
+            <%= render :partial => 'newedit', :locals => { :f => f}  %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

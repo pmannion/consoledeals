@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <h2>Sign up</h2>
+
+  <div class="row-fluid">
+    <div class="span8 hero-unit">
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Sign up", class: "btn btn-large btn-success" %>
+  </div>
+<% end %>
+
+<%= render "links" %>
+</div>
+</div>
+</div>

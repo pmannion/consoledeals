@@ -1,0 +1,12 @@
+<tbody>
+<tr>
+  <td><%= image_tag(supplier.image, size: '100x100') %><br/><span class="center"><%= supplier.name %></span></td>
+  <td><%= supplier.branch %></td>
+  <td><%= supplier.city %></td>
+  <td><%= supplier.email %></td>
+  <td>
+    <%= link_to "Edit supplier", edit_supplier_path(supplier), class: "btn  btn-small btn-success" %><br/>
+    <%= link_to 'Delete supplier', destroy_supplier_path(supplier), :confirm => 'Are you sure?', :method => :delete, class: 'btn btn-danger' %></td>
+  </td>
+</tr>
+</tbody>

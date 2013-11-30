@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1 class="blue-heading">Find a Great console deal</h1>
+
+    <div class ="hero-unit span8">
+
+      <!--Body content-->
+      <%= simple_form_for @giftsearch, url: gift_search_results_path, :method => :post   do |f| %>
+
+          <div id="labelwrapper">
+            <div class="span5">Please pick a console format</div>
+            <div class="span7"><%= f.collection_select :console_id, Console.all, :id, :console_format, include_blank: "Please pick a category", label: false %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">Please pick a minimum Price</div>
+            <div class="span7"><%= f.input :min_spend, label: false, required: true %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">Please pick a maximum Price</div>
+            <div class="span7"><%= f.input :max_spend, label: false, required: true %>
+            </div>
+          </div>
+
+           <%= f.submit "Find my perfect gift", class: "btn btn-large btn-info", id: "submit-gift-button" %>
+
+         </div>
+       <% end %>
+     </div>
+  </div>

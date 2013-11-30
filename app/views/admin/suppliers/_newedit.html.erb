@@ -1,0 +1,72 @@
+
+<div id="labelwrapper">
+<div class="span5">Display supplier ?</div>
+<div class="span7"><%= f.input :display, as: :radio_buttons, label: false, required: true, :item_wrapper_class => 'inline' %>
+</div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Name</div>
+  <div class="span7"><%= f.input :name, label: false, required: true %>
+  </div>
+</div>
+
+
+<div id="labelwrapper">
+  <div class="span5">Branch</div>
+  <div class="span7"><%= f.input :branch, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Image</div>
+  <div class="span7"><%= f.input :image, label: false %>
+  </div>
+</div>
+
+
+<div id="labelwrapper">
+  <div class="span5">Description</div>
+  <div class="span7"><%= f.input :description, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Email</div>
+  <div class="span7"><%= f.input :email, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Link</div>
+  <div class="span7"><%= f.input :link,  label: false, required: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Street</div>
+  <div class="span7"><%= f.input :street, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Town</div>
+  <div class="span7"><%= f.input :town, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">City</div>
+  <div class="span7"><%= f.input :city,  label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">County</div>
+  <div class="span7"><%= f.input :county,  label: false, required: true %>
+  </div>
+</div>
+
+<%= f.submit "Submit", class: "btn btn-succes" %>
+
+

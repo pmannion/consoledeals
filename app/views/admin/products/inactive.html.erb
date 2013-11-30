@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <h1><%= @products.count %> Inactive products</h1><br/>
+    <%= link_to "View active Products", '/admin/products/index', class: 'btn btn-success' %>
+  </div>
+
+  <div class="tab-pane push-down">
+    <table class="table table-hover">
+      <%= render partial: 'heading' %>
+      <%= render partial: 'product', collection: @products %>
+    </table>
+  </div>
+</div>

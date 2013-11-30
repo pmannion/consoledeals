@@ -1,0 +1,34 @@
+<% if @products %>
+<tr>
+  <td>
+    <% if product.is_bundle?  %>
+        <p>yes</p>
+    <% else %>
+        <p>No</p>
+    <% end %>
+  </td>
+  <td> <%= product.console.console_format %> / <%= product.name %>   </td>
+  <td>
+   - <%= product.item1 %><br/>
+   - <%= product.item2 %><br/>
+   - <%= product.item3 %>
+  </td>
+  <td>
+    <% if product.extra_controller? %>
+      <p>Yes</p>
+    <% else %>
+      <p>No</p>
+    <% end %>
+    </td>
+  <td>
+    <%= product.supplier.name %><br/>
+    <%= product.supplier.branch %>
+  </td>
+  <td><%= product.bundle_value%></td>
+  <td><%= product.price %></td>
+  <td class="span2">
+    <%= link_to "Edit", edit_product_path(product) , class: "btn btn-success" %>
+  </td>
+
+</tr>
+<% end %>

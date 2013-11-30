@@ -1,0 +1,26 @@
+
+
+<table class="cart-table">
+  <tbody>
+  <tr class="span12">
+    <td class='cart-td'><%= render cart.line_items %></td>
+  </tr>
+  <tr>
+    <td>Total:</td>
+    <td class='cart-td'><%= number_to_currency(cart.total_price, unit: "€") %></li></td>
+  </tr>
+ </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

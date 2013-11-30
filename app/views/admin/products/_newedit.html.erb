@@ -1,0 +1,106 @@
+<div id="labelwrapper">
+  <div class="span5">Display product</div>
+  <div class="span7"><%= f.input :display, as: :radio_buttons, label: false, required: true, :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Which supplier does this belong to?</div>
+  <div class="span7"><%= f.collection_select :supplier_id, Supplier.all, :id, :name, label: false, required: true , include_blank: "Please select a supplier" %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Console Format</div>
+  <div class="span7"><%= f.collection_select :console_id, Console.all,  :id, :console_format,  label: false, required: true, prompt: "Please select one"  %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Product Name</div>
+  <div class="span7"><%= f.input :name, label: false, required: true %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Is this a bundle deal?</div>
+  <div class="span7"><%= f.input :is_bundle, as: :radio_buttons, label: false, required: true,  :item_wrapper_class => 'inline'%>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Bundle Item 1</div>
+  <div class="span7"><%= f.input :item1, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Bundle Item 2 </div>
+  <div class="span7"><%= f.input :item2, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Bundle Item 3</div>
+  <div class="span7"><%= f.input :item3, label: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Is there an extra controller included?</div>
+  <div class="span7"><%= f.input :extra_controller, as: :radio_buttons, label: false, required: false,  :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Special offer ?</div>
+  <div class="span7"><%= f.input :special_offer, as: :radio_buttons, label: false,  :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Special offer Price </div>
+  <div class="span7"><%= f.input :special_offer_price, label: false, required: false, :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Description</div>
+  <div class="span7"><%= f.input :special_offer_description, label: false, required: false, :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+
+<div id="labelwrapper">
+  <div class="span5">Special offer start date</div>
+  <div class="span7"><%= f.input :start_date, label: false, required: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Special offer end date</div>
+  <div class="span7"><%= f.input :end_date, label: false, required: false %>
+  </div>
+</div>
+
+
+<div id="labelwrapper">
+  <div class="span5">Image </div>
+  <div class="span7"><%= f.input :image, label: false, required: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">Bundle value ( not selling price ) </div>
+  <div class="span7"><%= f.input :bundle_value, label: false, required: false %>
+  </div>
+</div>
+
+<div id="labelwrapper">
+  <div class="span5">selling price </div>
+  <div class="span7"><%= f.input :price, label: false, required: false %>
+  </div>
+</div>
+
+
+<%= f.submit "Next", class: "btn btn-success" %>

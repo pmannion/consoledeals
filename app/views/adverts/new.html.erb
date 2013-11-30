@@ -1,0 +1,63 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span12">
+
+      <div class="span12 push-right">
+        <ul>
+          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Fill in all the form details to increase the chance of a sale</li>
+          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Make sure your goods are in good condition</li>
+          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Consoledeals.com is not responsible for faulty goods exchanges between third parties</li>
+        </ul>
+      </div>
+
+    <div class="row-fluid">
+    <div class="hero-unit span8">
+      <!--Body content-->
+      <%= simple_form_for (@advert), url: create_advert_path  do |f| %>
+          <h3 class="blue-heading">Create an advert</h3><br/>
+          <div id="labelwrapper">
+            <div class="span5">Please pick a console format</div>
+            <div class="span7"><%= f.collection_select :console_id, Console.all, :id, :console_format, include_blank: "Please pick a console", label: false %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">What are you selling?</div>
+            <div class="span7"><%= f.input :product_name, label: false, required: true %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">Information</div>
+            <div class="span7"><%= f.input :description, label: false, required: true %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">What is the Price?</div>
+            <div class="span7"><%= f.input :price, label: false, required: true %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">condition</div>
+            <div class="span7"><%= f.select :condition, Advert::CONDITION, label: false, required: true, include_blank: "please select a condition" %>
+            </div>
+          </div>
+
+          <div id="labelwrapper">
+            <div class="span5">Contact details</div>
+            <div class="span7"><%= f.input :phone, label: false, required: true %>
+            </div>
+          </div>
+
+          <%= f.submit "Submit advert", class: "btn btn-large btn-success", id: "submit-gift-button" %>
+
+
+      <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
