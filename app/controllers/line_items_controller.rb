@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+
+  before_filter :authenticate_admin, :only => [:index, :edit, :update, :show]
   # GET /line_items
   # GET /line_items.json
   def index
@@ -13,19 +15,26 @@ class LineItemsController < ApplicationController
   # GET /line_items/1
   # GET /line_items/1.json
   def show
+    begin
     @line_item = LineItem.find(params[:id])
-
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid record"
+      flash[:alert] ="There was nothing at the page requested, you have been sent back to the search page"
+      redirect_to :controller => 'giftsearches', :action => 'results'
+    else
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @line_item }
+      format.json { render json: @cart }
+      end
     end
   end
+
+
 
   # GET /line_items/new
   # GET /line_items/new.json
   def new
     @line_item = LineItem.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @line_item }
@@ -80,8 +89,14 @@ class LineItemsController < ApplicationController
     session[:line_item_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'product removed' }
+      format.html { redirect_to :controller => 'giftsearches' , :action => 'results', notice: 'product removed' }
+      format.js
       format.json { head :no_content }
     end
   end
+
+
 end
+
+
+

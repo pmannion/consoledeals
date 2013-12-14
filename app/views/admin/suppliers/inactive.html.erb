@@ -1,0 +1,19 @@
+<div class="container" id="generic">
+  <div class="row-fluid">
+    <h1><%= @suppliers.size if @suppliers %> Inactive Suppliers</h1>
+    <div class="span3"><%= link_to "Active Suppliers" , suppliers_path, class: "btn btn-large btn-success"%></div>
+  </div>
+
+  <div class="tab-pane push-down">
+    <table class="table">
+      <tbody>
+      <%= render :partial => 'heading' %>
+      <%= render :partial => 'supplier', :collection => @suppiers %>
+      </tbody>
+    </table>
+  </div>
+  <div class="paginate">
+    <%= will_paginate @products %>
+  </div>
+</div>
+

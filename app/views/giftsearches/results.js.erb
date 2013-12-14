@@ -1,0 +1,3 @@
+$("#product_list tbody").html("");
+$("#product_list tbody").html("<%= escape_javascript(render(:partial => 'gift', :collection => @products)) %>");
+$("#empty-partial").hide();

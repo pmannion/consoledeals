@@ -1,7 +1,11 @@
-class Admin::ConsolesController < ApplicationController
+class Admin::ConsolesController < AdminController
 
   def index
-    @consoles = Console.all
+    @consoles = Console.where(display: true).paginate(per_page: 2, page: params[:page], order:('created_at DESC'))
+  end
+
+  def inactive
+    @consoles = Console.where(display: false).paginate(per_page: 10, page: params[:page], order:('created_at DESC'))
   end
 
   def new

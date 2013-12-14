@@ -1,7 +1,11 @@
-class Admin::ProductsController < ApplicationController
+class Admin::ProductsController < AdminController
 
   def index
-    @products = Product.where(display: true)
+    @products = Product.where(display: true).paginate(per_page: 20,page:params[:page], include: [:supplier, :console], order: ('created_at DESC'))
+  end
+
+  def inactive
+    @products = Product.where(display: false).paginate(per_page: 20,page: params[:page],include: [:supplier, :console], order: ('created_at DESC'))
   end
 
   def new
@@ -34,7 +38,4 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
-  def inactive
-    @products = Product.where(display: false)
-  end
 end

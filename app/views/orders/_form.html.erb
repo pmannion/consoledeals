@@ -1,17 +1,142 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+<div id="order_new">
+  <div class="row-fluid span12">
+    <fieldset>
+      <% if @order.errors.any? %>
+      <div class="span8 well">
+        <div class="errors">
+           <div id="error_explanation">
+              <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+                <ul>
+                  <% @order.errors.full_messages.each do |msg| %>
+                      <li id="red-error"><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+        </div>
+    </fieldset>
   </div>
-<% end %>
+</div>
+<!-- order delivery form starts, div to hide or show -->
+<div id="order_new">
+<div class="row-fluid span8">
+<fieldset>
+  <h3>Order</h3>
+<div id="labelwrapper">
+  <div class="span5">Do you want delivery?<br/> <strong>You will collect from store if "No"</strong></div>
+  <div class="span5"><%= f.input :order_type , as: :radio_buttons, :item_wrapper_class => 'inline',:checked => true ,label: false %></div>
+</div>
+</fieldset>
+</div>
+</div>
+<!-- delivery ends -->
+<hr/>
+
+<!-- collection starts -->
+<div id="order_collection">
+<div class="row-fluid span8">
+<fieldset>
+  <h3>Collection</h3>
+  <div id="labelwrapper">
+    <div class="span5">Where do you want to collect?</div>
+    <div class="span5"><%= f.collection_select :branch_id , Branch.all, :id, :street, label: false, required: false, include_blank: "Select a branch"%></div>
+  </div>
+
+  <div id="labelwrapper">
+    <div class="span5">When do you want to collect?</div>
+    <div class="span5"><%= f.text_field :collection_date, label: false, required:false, id: "date_collect",placeholder: "Click here to select a date" %></div>
+  </div>
+</fieldset>
+</div>
+</div>
+
+<div id="order_delivery">
+  <div class="row-fluid span8">
+    <fieldset>
+      <h3>Delivery</h3>
+      <div id="labelwrapper">
+        <div class="span5">name</div>
+        <div class="span5"><%= f.input :name , label: false, required: false, placeholder: "your name" %></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">Email</div>
+        <div class="span5"><%= f.input :email , label: false, required: false, placeholder: "example@mail.com" %></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">Address Line</div>
+        <div class="span5"><%= f.input :add_1 , label: false , required: false, placeholder: "first line of your address"%></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">Street</div>
+        <div class="span5"><%= f.input :street , label: false, required:false, placeholder: "name of your street"%></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">Town</div>
+        <div class="span5"><%= f.input :town , label: false, required: false, placeholder: "name of your town"%></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">City</div>
+        <div class="span5"><%= f.input :city , label: false, required: false, placeholder: "name of your city"%></div>
+      </div>
+
+      <div id="labelwrapper">
+        <div class="span5">Country</div>
+        <div class="span5"><%= f.text_field :country , label: false, required: false, placeholder: "name of your country"%></div>
+      </div>
+    </fieldset>
+  </div>
+</div>
+<!-- delivery ends -->
+<hr/>
+<!-- collection starts -->
+<div id="order_payment">
+  <div class="row-fluid span8">
+    <fieldset>
+      <h3>Payment</h3>
+      <div id="labelwrapper">
+        <div class="span5">How do you want to pay?</div>
+        <div class="span5"><%= f.select :pay_type, Order::PAY_TYPE, label: false , include_blank: "Please select a payment method", required: true%></div>
+        <div id="message"></div>
+      </div>
+        <div class="span5"><%= f.submit "Confirm Order >", class: "btn btn-large btn-success" %></div>
+
+    </fieldset>
+  </div>
+</div>
+<!-- collection ends -->
+
+
+<script>
+
+  function filter_stage(){
+      if ($("#order_order_type").change());{
+          $("#order_delivery").toggle();
+      }
+  }
+
+ $(document).ready(function(){
+     $("input[name='order[order_type]']").change(function(){
+         filter_stage();
+     });
+
+
+         $("#date_collect").datepicker({
+             dateFormat: "dd-mm-yy"
+         });
+         $("button").click(function() {
+             var selected = $("#dropdown option:selected").text();
+             var date = $("#date_collect").val();;
+             if (date === "") {
+                 $("#message").html("Please a collection dates.");
+                 return false;
+             }
+
+     });
+ });
+</script>

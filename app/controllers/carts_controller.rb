@@ -1,6 +1,8 @@
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
+  before_filter :authenticate_admin, :only => [:index, :edit, :update, :show]
+
   def index
     @carts = Cart.all
 
@@ -13,19 +15,23 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    begin
     @cart = Cart.find(params[:id])
-
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{cart.id} + #{current_user.email}"
+      flash[:alert] = "Oops there is nothing there"
+      redirect_to root_path
+    else
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cart }
     end
   end
-
+ end
   # GET /carts/new
   # GET /carts/new.json
   def new
     @cart = Cart.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @cart }
@@ -41,7 +47,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(params[:cart])
-
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
@@ -57,7 +62,6 @@ class CartsController < ApplicationController
   # PUT /carts/1.json
   def update
     @cart = Cart.find(params[:id])
-
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
         format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
@@ -74,10 +78,10 @@ class CartsController < ApplicationController
   def destroy
     @cart = Cart.find(params[:id])
     @cart.destroy
-
     respond_to do |format|
       format.html { redirect_to carts_url }
       format.json { head :no_content }
     end
   end
+
 end

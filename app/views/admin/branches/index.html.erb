@@ -1,8 +1,10 @@
 <div class="container" id="generic">
   <div class="row-fluid">
     <h1><%= @branches.size if @branches %> Active Branch</h1>
-    <div class="span3"><%= link_to "Inactive Branches" , inactive_branches_path, class: "btn btn-large btn-success"%></div>
-  </div>
+      <div class="span12">
+        <%= link_to "Create Branch" , create_branch_path, class: "btn btn-large btn-success"%>
+        <%= link_to "Inactive Branches" , inactive_branches_path, class: "btn btn-large btn-success"%>
+      </div>
 
     <div class="tab-pane push-down">
       <table class="table">
@@ -12,8 +14,11 @@
         </tbody>
       </table>
       </div>
+      <div class="paginate">
+        <%= will_paginate @branches %>
+      </div>
     </div>
-
+</div>
 
 
 

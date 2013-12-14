@@ -1,4 +1,6 @@
 class GiftsearchesController < ApplicationController
+ # new action not needed for now all done int the results action !
+   before_filter :fetch_seacrh, :only => :results
 
   def new
     if @giftsearch.nil?
@@ -6,32 +8,48 @@ class GiftsearchesController < ApplicationController
     end
   end
 
-
   def results
     # get the gift search parameters and if it saves use the filters
     # add more filters as needed ... city ?
-      if @giftsearch.nil?
+    #save current user_id to giftsearch, ability to show users last searches
+      if @giftsearch.nil? || @giftsearch.id.nil?
        @giftsearch = Giftsearch.new(params[:giftsearch])
+      else
+        @giftsearch = Giftsearch.update(@giftsearch.id, params[:giftseacrh])
+      end
+
+      if current_user
+        @giftsearch.user_id  = current_user.id
       end
 
       @cart = current_cart
+
       if @giftsearch.save
+        session[:giftsearch_id] = @giftsearch.id
         if @giftsearch.show_games == false
         conditions = Product.order('price ASC')
         conditions = conditions.where(console_id: @giftsearch.console_id);
-        conditions = conditions.where("price >= ?", @giftsearch.min_spend);
         conditions = conditions.where("price <= ?", @giftsearch.max_spend);
         conditions = conditions.where(is_bundle: true)
-        @products = conditions.includes([:supplier], [:console])
+        @products = conditions.includes([:supplier], [:console], [:product])
        end
         if @giftsearch.show_games == true
           conditions = Product.order('price ASC')
           conditions = conditions.where(console_id: @giftsearch.console_id)
-          conditions = conditions.where("price >= ?", @giftsearch.min_spend)
           conditions = conditions.where("price <= ?", @giftsearch.max_spend)
-          @products = conditions.includes([:supplier],[:console])
-         end
-       end
+          @products = conditions.includes([:supplier],[:console], [:product])
+        end
+      end
+    respond_to do |format|
+      format.html
+      format.js { @products}
+    end
+  end
+
+  def search_adverts
+    if @advert_search.nil?
+      @advert_search = Giftsearch.new
+    end
   end
 
 
@@ -56,6 +74,14 @@ class GiftsearchesController < ApplicationController
     end
     # Product id is the array value
     @compare = Product.where({:id => array}).includes(:supplier)
+  end
+
+  private
+
+  def fetch_seacrh
+    if params[:giftsearch_id]
+      @giftsearch = Giftsearch.find(session[:giftsearch_id])
+    end
   end
 
 

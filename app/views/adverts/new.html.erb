@@ -15,16 +15,10 @@
     <div class="hero-unit span8">
       <!--Body content-->
       <%= simple_form_for (@advert), url: create_advert_path  do |f| %>
-          <h3 class="blue-heading">Create an advert</h3><br/>
+          <h2 class="blue-heading">Create an advert</h2><br/>
           <div id="labelwrapper">
             <div class="span5">Please pick a console format</div>
             <div class="span7"><%= f.collection_select :console_id, Console.all, :id, :console_format, include_blank: "Please pick a console", label: false %>
-            </div>
-          </div>
-
-          <div id="labelwrapper">
-            <div class="span5">What are you selling?</div>
-            <div class="span7"><%= f.input :product_name, label: false, required: true %>
             </div>
           </div>
 

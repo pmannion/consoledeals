@@ -1,24 +1,24 @@
-<tbody>
+
   <tr>
     <td><%= image_tag(gift.supplier.image, size: '120x120') %><br/></td>
     <td><%= image_tag(gift.console.name) %></td>
     <td>
       <% if gift.is_bundle %>
-      <%= gift.name %><br/>
-      <% if gift.item1 %>
-     - <%= gift.item1 %><br/>
+        <%= gift.name %><br/>
+      <% if gift.item1.present? %>
+        <%= gift.item1 %><br/>
       <% end %>
-      <% if gift.item2 %>
-     - <%= gift.item2 %><br/>
+      <% if gift.item2.present? %>
+        <%= gift.item2 %><br/>
       <% end %>
-      <% if gift.item3 %>
-     - <%= gift.item3 %><br/>
+      <% if gift.item3.present? %>
+        <%= gift.item3 %><br/>
       <% end %>
       <% if gift.extra_controller? %>
-     - 1 extra controller
+      With 1 extra controller
       <% end %>
       <% if gift.item1.nil? && gift.item2.nil? && gift.item3.nil?  %>
-      - No items includes
+        No items includes
       <% end %>
       <% else %>
           <%= gift.name %><br/>
@@ -36,17 +36,13 @@
       <% end %>
    </td>
 
-    <td>
-      <%= check_box(:compare, gift.id, :checked_value => gift.id, class: '') %>
-    </td>
-
    <td>
-     <%= link_to "View Product", product_path(gift), class:"btn btn-small btn-success" %><br/>
-     <%= link_to "Reserve Item", line_items_path(product_id: gift),method: :post, remote: true, class: "btn btn-small btn-warning" %>
+     <%= link_to "View Details", product_path(gift), class:"btn btn-block btn-info" %><br/>
+     <%= link_to "Add to Cart", line_items_path(product_id: gift),method: :post, remote: true, class: "btn btn-block btn-small btn-success" %>
    </td>
 
 
   </tr>
 
-</tbody>
+
 

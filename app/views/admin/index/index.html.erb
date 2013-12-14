@@ -1,43 +1,58 @@
 <div class="container">
-  <div class="span12">
-    <h1>Admin Panel</h1>
-    <div class="row-fluid span12">
+  <h1>Admin Panel</h1>
 
-        <ul class="nav nav-tabs nav-stacked span4">
-          <li class="btn-action admin-box"><%= link_to "List Suppliers", '/admin/suppliers/index', class: "admin-text" %></li>
-          <li class="btn-action admin-box"><%= link_to "Create New supplier", '/admin/suppliers/new', class: "admin-text" %></li>
-        </ul>
-    </div>
+     <div class="row-fluid span12 well">
+
+       <div class="row-fluid span12">
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "List Suppliers", '/admin/suppliers/index', class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "Create New supplier", '/admin/suppliers/new', class: "admin-text" %></li>
+           </ul>
+         </div>
+
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "List Console", consoles_path, class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "Create Console", create_console_path, class: "admin-text" %></li>
+           </ul>
+         </div>
+
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "List Products", '/admin/products/index', class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "Create New product", '/admin/products/new', class: "admin-text" %></li>
+           </ul>
+         </div>
+         <!-- row 1 ends on div below -->
+       </div>
+      </div>
+       <div class="row-fluid span12 well">
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "List Active Users", index_users_path, class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "List Banned User", banned_users_path, class: "admin-text" %></li>
+           </ul>
+         </div>
+
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "Manage Orders", orders_path, class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "Manage Adverts", adverts_path, class: "admin-text" %></li>
+            </ul>
+         </div>
+
+         <div class="row-fluid span3">
+           <ul class="nav nav-tabs nav-stacked">
+             <li class="btn-action admin-box"><%= link_to "List Branches", branches_path, class: "admin-text" %></li>
+             <li class="btn-action admin-box"><%= link_to "Create Branch", create_branch_path, class: "admin-text" %></li>
+           </ul>
+         </div>
+
+         <!-- row 2 ends on div below -->
+       </div>
+     </div>
 
 
-
-      <ul class="nav nav-tabs nav-stacked span4">
-        <li class="btn-action admin-box"><%= link_to "List Products", '/admin/products/index', class: "admin-text" %></li>
-        <li class="btn-action admin-box"><%= link_to "Create New product", '/admin/products/new', class: "admin-text" %></li>
-        <br/>
-
-        <ul class="nav nav-tabs nav-stacked span4">
-          <li class="btn-action admin-box"><%= link_to "List Users", '#', class: "admin-text" %></li>
-          <li class="btn-action admin-box"><%= link_to "Create New User", '#', class: "admin-text" %></li>
-        </ul>
-
-        <ul class="nav nav-tabs nav-stacked span4">
-          <li class="btn-action admin-box"><%= link_to "Manage Orders", '#', class: "admin-text" %></li>
-        <br/>
-          <ul class="nav nav-tabs nav-stacked span4">
-            <li class="btn-action admin-box"><%= link_to "Create Console", create_console_path, class: "admin-text" %></li>
-            <li class="btn-action admin-box"><%= link_to "List Console", consoles_path, class: "admin-text" %></li>
-          </ul>
-          <br/>
-          <ul class="nav nav-tabs nav-stacked span4">
-            <li class="btn-action admin-box"><%= link_to "Create Branch", create_branch_path, class: "admin-text" %></li>
-            <li class="btn-action admin-box"><%= link_to "List Branches", branches_path, class: "admin-text" %></li>
-          </ul>
-      </ul>
-    </ul>
-    </ul>
-
-  </div>
-</div>
 
 

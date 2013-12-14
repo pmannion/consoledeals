@@ -1,0 +1,5 @@
+
+<tr>
+  <td>Ordered on: <%= order.created_at.strftime("%d/%B/%Y") %></td>
+  <td><%= link_to "view order", order_path(order), class: 'btn btn-success' %> </td>
+</tr>

@@ -5,6 +5,13 @@ module Admin::SuppliersHelper
     '/admin/suppliers/index'
   end
 
+  def new_supplier_path
+    '/admin/suppliers/new'
+  end
+
+  def inactive_suppliers_path
+   '/admin/suppliers/inactive/'
+  end
   def create_supplier_path
     '/admin/suppliers/create/'
   end

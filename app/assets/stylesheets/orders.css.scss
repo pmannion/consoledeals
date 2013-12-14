@@ -1,3 +1,32 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h3{
+  background-color: #fc6898;
+  color:white;
+  font-size: 1.5em;
+  font-family: tahoma;
+  padding:5px;
+  -webkit-border-radius:5px;
+  width:100px;
+  text-align: center;
+}
+
+#order-complete{
+
+    background-color: #fc6898;
+    color:white;
+    font-size: 1.5em;
+    font-family: tahoma;
+    padding:5px;
+    -webkit-border-radius:5px;
+    width:500px;
+    text-align: center;
+  }
+
+
+#ui-datepicker-div{
+ margin-left:400px;
+}

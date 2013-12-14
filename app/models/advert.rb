@@ -6,4 +6,15 @@ class Advert < ActiveRecord::Base
 
 
   CONDITION = ["As new", "Good", "Fair", "Damaged - Do not buy"]
-end
+
+  def self.search(search)
+    if search
+      where("description LIKE ?", "%#{search}%")
+    else
+       find(:all)
+    end
+  end
+
+ end
+
+

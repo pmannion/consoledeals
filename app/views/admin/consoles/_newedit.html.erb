@@ -1,4 +1,10 @@
 <div id="labelwrapper">
+  <div class="span5">Display console</div>
+  <div class="span7"><%= f.input :display, as: :radio_buttons, label: false, required: true, :item_wrapper_class => 'inline' %>
+  </div>
+</div>
+
+<div id="labelwrapper">
   <div class="span5">Console format</div>
   <div class="span7"><%= f.input :console_format , label: false%></div>
 </div>

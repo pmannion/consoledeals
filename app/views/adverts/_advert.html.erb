@@ -1,17 +1,13 @@
-<div id="advert-row">
-<tr>
-  <td><%= image_tag(advert.console.name, size: '80x80') %></td>
-  <td class="span4"><%= advert.product_name %> <%= advert.description %></td>
-  <td class="span2">condition <%= advert.condition %></td>
-  <td>Asking price <%= number_to_currency(advert.price, unit: "€") %></td>
-  <td><%= advert.phone %></td>
-  <td>Advert posted <%= time_ago_in_words(advert.created_at) %> ago</td>
-  <% if current_user && current_user.id == advert.user_id  %>
-  <td>
-    <%= link_to "delete", destroy_advert_path(advert), class: 'btn btn-danger' %>
-  </td>
-  <% end %>
-</tr>
-</div>
+  <tr>
+    <td><%= image_tag(advert.console.name, size: '80x80') %></td>
+    <td class="span4"><%= advert.description %></td>
+    <td class="span2">condition <%= advert.condition %></td>
+    <td><%= number_to_currency(advert.price, unit: "€") %></td>
+    <td><%= advert.phone %></td>
+    <td>Advert posted <%= time_ago_in_words(advert.created_at) %> ago</td>
+  </tr>
+
+
+
 
 

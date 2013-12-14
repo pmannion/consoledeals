@@ -1,0 +1,11 @@
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.created_at.strftime("%d %B %Y") %></td>
+  <td>
+    <% if user.ban == false %>
+      <%= link_to "Ban User", ban_user_path(user), class: 'btn btn-warning' %>
+    <% else %>
+        <%= link_to "Un-Ban User", remove_ban_path(user), class: 'btn btn-success' %>
+    <% end %>
+  </td>
+</tr>

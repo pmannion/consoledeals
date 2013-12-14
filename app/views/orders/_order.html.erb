@@ -1,0 +1,25 @@
+<tr>
+  <td>
+    <% if order.order_type == "delivery" %>
+        Delivery
+    <% else %>
+        Store Collection
+    <% end %>
+  </td>
+  <td><%= order.created_at.strftime("%d/%B/%Y") %></td>
+  <td><%= order.user.email %></td>
+  <td>
+    <%= simple_form_for '', url: edit_order_path(order) do |f| %>
+        <%= f.collection_select :status_id , Status.all, :id, :status %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to "View Order", order_path(order), class: 'btn btn-success' %>
+  </td>
+</tr>
+
+
+
+
+
+

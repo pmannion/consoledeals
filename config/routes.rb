@@ -1,20 +1,25 @@
 Consoledeals::Application.routes.draw do
 
-  resources :orders
+  resources :statuses
 
+  resources :orders
 
   resources :line_items
 
-
   resources :carts
-
-
-  resources :reservations
-
 
   devise_for :users do
     get 'logout' => 'devise/sessions#destroy'
   end
+
+  #users
+  match '/users/:id/' => 'users#show'
+  match '/users/:id/edit/' => 'users#edit'
+  match '/users/:id/update/' => 'users#update'
+  match '/users-index/' => 'users#index'
+  match '/banned-users/' => 'users#banned'
+  match '/ban-this-user/:id/' => 'users#ban_user'
+  match '/unban-this-user/:id/' => 'users#remove_ban'
 
   match '/admin' => 'admin/index#index'
 
@@ -35,10 +40,12 @@ Consoledeals::Application.routes.draw do
 
   match '/products/index/' => 'products#index'
   match '/view-product-details/:id/' => 'products#show'
+  match '/welcome-to-consoledeals' => 'products#store_front'
 
   #consoles
   match '/admin/consoles/new/' => 'admin/consoles#new'
   match '/admin/consoles/index/' => 'admin/consoles#index'
+  match '/admin/consoles/inactive/' => 'admin/consoles#inactive'
   match '/admin/consoles/create/' => 'admin/consoles#create'
   match '/admin/consoles/:id/edit/' => 'admin/consoles#edit'
   match '/admin/consoles/:id/update/' => 'admin/consoles#update'
@@ -55,6 +62,7 @@ Consoledeals::Application.routes.draw do
   #suppliers
   match '/admin/suppliers/new/' => 'admin/suppliers#new'
   match '/admin/suppliers/index/' => 'admin/suppliers#index'
+  match '/admin/suppliers/inactive/' => 'admin/suppliers#inactive'
   match '/admin/suppliers/create/' => 'admin/suppliers#create'
   match '/admin/suppliers/:id/edit/' => 'admin/suppliers#edit'
   match '/admin/suppliers/:id/update/' => 'admin/suppliers#update'
@@ -64,7 +72,7 @@ Consoledeals::Application.routes.draw do
   #gift_search
   match '/showing-your-gift-search-results/' => 'giftsearches#results'
   match '/compare-products/compare/' => 'giftsearches#compare'
-  match '/start_your_search_/' => 'giftsearches#new'
+  match '/search-for-your-perfect-console-deal/' => 'giftsearches#results'
 
 
   # The priority is based upon order of creation:
@@ -116,7 +124,7 @@ Consoledeals::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'giftsearches#results'
+  root :to => 'products#store_front'
 
   # See how all your routes lay out with "rake routes"
 

@@ -3,9 +3,6 @@ class Giftsearch < ActiveRecord::Base
 
    belongs_to :supplier
    belongs_to :console
-
-
-  GIFT_FOR = ["Man", "Woman", "Boy", "Girl"]
-
+   belongs_to :user
 
 end

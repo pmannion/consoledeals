@@ -1,5 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container" id="generic">
+  <div class="row-fluid">
+    <div class="span12 ">
+      <div class="span12 push-right">
+        <ul>
+         <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %>Congratulations Your order has been completed !</li></h4>
+         <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> You can view this order any time from <%= link_to "your profile" , user_url(current_user) %></li></h4>
+         <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Thanks for shopping with Consoledeals.com </li></h4>
+        </ul>
+      </div>
+    </div>
+
+  <div class="row-fluid span12 ">
+    <%= link_to "My Profile","#'", class: 'btn btn-large btn-success' %>
+  </div>
+
+    <div class="row-fluid span12">
+      <div class="row-fluid span8 hero-unit push-down">
+        <div class="tab-pane">
+        <table class="table">
+        <%= render partial:'user_heading' %>
+        <%= render :partial => 'finishorder', :collction => @order %>
+        </table>
+        </div>
+      </div>
+
+      <div class="row-fluid span3 push-down">
+        <%= render 'shared/twitter' %>
+      </div>
+       </div>
+    </div>
+  </div>
 
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+
+
+
+
+
+

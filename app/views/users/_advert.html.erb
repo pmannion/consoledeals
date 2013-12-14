@@ -1,0 +1,6 @@
+<tr>
+  <td>Advert posted: <%= advert.created_at.strftime("%d/%B/%Y") %></td>
+  <td>
+    <%= link_to "delete", destroy_advert_path(advert), class: 'btn btn-danger' %>
+  </td>
+</tr>

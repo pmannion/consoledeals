@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  before_filter :authenticate_admin, :only => [:index, :edit, :update, :destroy]
+  before_filter :authenticate_user! , :on => [:new]
   def index
-    @orders = Order.all
+    @orders = Order.where("status_id != 1")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,24 +15,30 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.find(params[:id])
-
+    begin
+      @cart = current_cart
+      @order = Order.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid object"
+      redirect_to :contoller => 'giftsearches', :action => 'results'
+    else
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order }
+      end
     end
   end
 
   # GET /orders/new
   # GET /orders/new.json
   def new
+    @user = current_user
     @cart = current_cart
-    if @line_items.empty
+    if @cart.line_items.empty?
       flash[:alert] = "You cart is empty, please add items to reserve"
       redirect_to root_path
     end
     @order = Order.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -45,11 +53,15 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(params[:order])
+   @order = current_user.orders.new(params[:order])
+   @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        Notifier.confirm_order(current_user, @order).deliver
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        format.html { redirect_to @order, notice: 'Order was successfully created and a confirmation has been sent to yout email.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "new" }

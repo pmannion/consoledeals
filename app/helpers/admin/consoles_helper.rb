@@ -8,6 +8,10 @@ module Admin::ConsolesHelper
     '/admin/consoles/index/'
   end
 
+  def inactive_consoles_path
+    '/admin/consoles/inactive/'
+  end
+
   def edit_console_path(console)
     "/admin/consoles/#{console.id}/edit/"
   end

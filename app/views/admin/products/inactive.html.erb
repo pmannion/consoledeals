@@ -10,4 +10,7 @@
       <%= render partial: 'product', collection: @products %>
     </table>
   </div>
+  <div class="paginate">
+    <%= will_paginate @products %>
+  </div>
 </div>

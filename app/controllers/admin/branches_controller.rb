@@ -1,11 +1,11 @@
-class Admin::BranchesController < ApplicationController
+class Admin::BranchesController < AdminController
 
   def index
-    @branches = Branch.where(display: true)
+    @branches = Branch.where(display: true).paginate(per_page: 20, page: params[:page], order: ('created_at DESC'))
   end
 
   def inactive
-    @branches = Branch.where(display: false)
+    @branches = Branch.where(display: false).paginate(per_page: 20, page: params[:page], order: ('created_at DESC'))
   end
 
   def new

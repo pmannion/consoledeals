@@ -7,21 +7,7 @@ class Product < ActiveRecord::Base
   belongs_to :console
   has_many :line_items
 
-
   before_destroy :ensure_not_refrenced_by_any_line_item
-
-  def min_spend
-    @min_spend
-  end
-
-  def max_spend
-    @max_spend
-  end
-
-  def category
-    @category
-  end
-
 
 
   private

@@ -1,0 +1,5 @@
+$("#advert_list tbody").html("");
+$(".progress").show();
+$("#advert_list tbody").html("<%= escape_javascript(render(:partial => 'advert', :collection => @adverts)) %>");
+$(".progress").hide();
+

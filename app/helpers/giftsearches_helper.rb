@@ -1,7 +1,7 @@
 module GiftsearchesHelper
 
   def gift_search_path
-    '/giftsearches/new/'
+    "/search-for-your-perfect-console-deal/"
   end
 
   def gift_search_results_path
@@ -11,4 +11,5 @@ module GiftsearchesHelper
   def compare_products_path(product)
     "/compare-products/#{product.id}/"
   end
+
 end

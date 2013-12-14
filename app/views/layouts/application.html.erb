@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <script type="text/javascript">
-      $(function(){
-          $('.carousel').carousel();
-      });
-  </script>
-  <title>Presents</title>
+  <title>ConsoleDeals</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -23,22 +17,20 @@
           </ol>
           <!-- Carousel items -->
           <div class="carousel-inner">
-            <div class="active item"><%= image_tag("xboxone.jpeg" ) %></div>
-            <div class="item"><%= image_tag("xboxone.jpeg") %></div>
-            <div class="item"><%= image_tag("xboxone.jpeg") %></div>
+            <div class="active item"><%= image_tag("xboxonebanner2.jpg" ) %></div>
+            <div class="item"><%= image_tag("ps4banner.png") %></div>
+            <div class="item"><%= image_tag("Nintendo-3DS-banner.jpg") %></div>
           </div>
           <!-- Carousel nav -->
           <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
           <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
         </div>
       </div>
-
-
     <div class="container-fluid">
       <div class="row-fluid">
-    <div class="span12">
-      <div class="navbar navbar-inverse navbar-static">
-        <div class="navbar-inner">
+       <div class="span12">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+         <div class="navbar-inner">
           <div class="container">
 
             <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -56,26 +48,25 @@
               <ul class="nav">
                 <li class="active"><%= link_to "Home" ,root_path %></li>
                 <!--add admin filter to the link below -->
-                <li><%= link_to "Console Search", root_path %></li>
+                <li><%= link_to "Console Search", gift_search_path %></li>
                 <li><%= link_to "Adverts", adverts_path %></li>
-                <li><%= link_to "Admin",admin_path %></li>
+                <% if is_admin? %>
+                  <li><%= link_to "Admin",admin_path %></li>
+                <% end %>
               </ul>
-              <form class="navbar-search pull-left hidden-phone hidden-tablet" action="">
-                <input type="text" class="search-query span10" placeholder="Search">
-              </form>
+
               <ul class="nav pull-right">
                 <li class="divider-vertical"></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag('cart.jpg', size: '30x30', id:'cart-glow') %> Cart<b class="caret"></b></a>
-                  <ul class="dropdown-menu pull-right" id="cart-dropdown">
-                    <% if @cart.nil?%>
-                        <li> No Items in cart</li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag('cart.jpg', size: '30x30', id:'cart-glow') %> Cart<b class="caret"></b></a>
+                 <ul class="dropdown-menu pull-right" id="cart-dropdown">
+                   <% if @cart.nil? %>
+                     <li> No Items in cart</li>
                     <% else %>
                         <div id="cart">
                           <%= render @cart %>
                         </div>
-
-                        <%= link_to "Check Out", new_order_path, class: 'btn btn-xs btn-success', id: 'reserve-button' %>
+                          <%= link_to "Check Out", new_order_path, class: 'btn btn-xs btn-success', id: 'reserve-button' %>
                     <% end %>
                   </ul>
                 <% unless current_user %>
@@ -91,7 +82,7 @@
                       <% end %>
                   <% if current_user %>
                   <ul class="dropdown-menu">
-                    <li><a href="">Profile</a></li>
+                    <li><%= link_to "Profile", user_url(current_user) %></li>
                     <li><a href="<%= new_advert_path %>">Create advert</a></li>
                     <li><a href="#">Reviews</a></li>
                     <li class="divider"></li>
@@ -109,12 +100,25 @@
       </div>
     </div>
   </div>
-
-      <%= render 'layouts/messages' %>
+ <%= render 'layouts/messages' %>
 
 <%= yield %>
-
-   <div class="footer"></div>
-
+   <div class="footer"<p id="copyright">Copyright Paul Mannion <%= Time.now.year %> &nbsp;  <%= link_to image_tag("linkedin.jpg", size: "15x15"),"http://www.linkedin.com/in/pmannion" %></p></div>
 </body>
 </html>
+
+<script>
+    $("#delete_lineitem").click(function(event){
+        $.ajax({
+            type: "POST",
+            url: <%= line_items_path(@line_item) %>,
+            dataType: "json",
+            data: {"_method":"delete"},
+            complete: function(){
+                alert("Deleted successfully");
+            }
+        });
+        event.preventDefault();
+    });
+
+</script>

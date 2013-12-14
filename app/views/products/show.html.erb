@@ -1,37 +1,71 @@
 <div class="container-fluid">
-  <div class="row-fluid">
-    <h2>Showing details for <%= @product.console.console_format %> <%= @product.name %></h2>
-    <div class="span12">
-      <div class="span6 push-down">
+  <div class="row-fluid span12">
+    <div class="span12 push-right">
+      <ul>
+        <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Details for <%= @product.name %></li></h4>
+        <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> You can add  <%= @product.name %> to your cart from this page</li></h4>
+        <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Just click the "Add to Cart" button ! </li></h4>
+      </ul>
+    </div>
+   </div>
+
+    <div class="row-fluid span12">
+
+      <div class="span2 space-bottom">
         <% if @product.is_bundle %>
           <%= image_tag(@product.image, size: '500x300') %>
         <% else %>
             <%= image_tag(@product.image, size: '200x100') %>
         <% end %>
+        <%= link_to  number_to_currency(@product.price, unit: "€"), line_items_path(product_id: @product),method: :post, remote: true, class: "btn  btn-large btn-warning" %>
       </div>
 
-      <div class="span6 push-down">
-         <h5>Description</h5>
-        </div>
-
-        <div class="row-fluid span12 push-down">
-          <div class="span5 well">
-          <% if @product.item1.nil? && @product.item2.nil? && @product.item3.nil?  %>
-              <h5>No included items</h5>
-          <% else %>
-              <h5>Included items</h5>
-              <ul>
-                <li><%=@product.item1 %></li>
-                <li><%=@product.item2 %></li>
-                <li><%=@product.item3 %></li>
-                <% if @product.extra_controller %>
-                    <li>1 Extra Controller</li>
-                <% end %>
-              </ul>
+      <div class="row-fluid span10 well">
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">Details</a></li>
+            <li><a href="#tab2" data-toggle="tab">Reviews</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+              <div class="row-fluid">
+                <div class="span12">
+                  <% if @product.item1.nil? && @product.item2.nil? && @product.item3.nil?  %>
+                      <h5>No included items</h5>
+                  <% else %>
+                      <h5>Included items</h5>
+                      <ul>
+                        <li><%=@product.item1 %></li>
+                        <li><%=@product.item2 %></li>
+                        <li><%=@product.item3 %></li>
+                        <% if @product.extra_controller %>
+                            <li>1 Extra Controller</li>
+                        <% end %>
+                      </ul>
+                  <% end %>
+                </div>
               </div>
-          <% end %>
+            </div>
+            <div class="tab-pane" id="tab2">
+              <div class="span12">
+                <p> No reviews yet</p>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
+
+
+     </div>
+    </div>
+
+
+
+
 </div>
+
+
+
+
+

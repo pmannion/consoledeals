@@ -1,6 +1,9 @@
 
     <tr>
       <td class="span1"><%= line_item.quantity %>&times;</td>
-      <td class="span12"><%= line_item.product.name %></td>
-      <td class="span12"><%= number_to_currency(line_item.total_price, unit: "€") %></td>
+      <td class="span6"><%= line_item.product.name %></td>
+      <td class="span3"><%= number_to_currency(line_item.total_price, unit: "€") %></td>
+      <% unless @order %>
+        <td class="span2"><%= link_to image_tag("red-x.png"), line_item_path(line_item),method: :delete, id: 'delete_lineitem' %></td>
+      <% end %>
     </tr>

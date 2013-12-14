@@ -1,30 +1,54 @@
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span12">
+    <div class="span12 ">
       <div class="span12 push-right">
         <ul>
-          <% if @adverts.blank? %>
-              <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Use the search options to find second han games and consoles</li>
-          <% else %>
-              <li><%= image_tag('green-thumb.jpg', size: '40x40') %> We have found <%= @adverts.size %> advert based on your search options</li>
-          <% end %>
-          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Make sure you check the condition of all goods before you pay</li>
-          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Consoledeals.com is not responsible for faulty goods exchanges between third parties</li>
-          <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Create your own advert FREE for a limited period <%= link_to "Create an advert", new_advert_path, class: 'btn btn-small btn-info' %> </li>
+          <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Use the search options to find second hand games & consoles</li></h4>
+          <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Please check all goods before paying</li></h4>
+          <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> All the information you need to contact a seller is listed below</li></h4>
         </ul>
-      </div>
-
-    <div class="row-fluid">
-    <div class="span12">
-      <div class="tab-pane">
-        <table class="table table-hover">
-          <%= render :partial => 'heading' %>
-          <%= render :partial => 'advert', :collection =>  @adverts %>
-        </table>
-      </div>
     </div>
-   </div>
-
   </div>
+
+<div class="row-fluid span12">
+  <div class="span2 well">
+    <h4>Refine your search</h4>
+      <%= form_tag adverts_path, method: "get", id: "advert_form" do %>
+    <h5 class="span10">Description:</h5>
+      <div class="span7">
+        <%= text_field_tag :search, params[:search],style: "width: 130px", placeholder: "Search description" %>
+      </div>
+        <%= submit_tag "Search", name: nil, class: "btn btn-success" %>
+        <% end %>
+    </div>
+
+    <div class="span10">
+      <table class="table table" id="advert_list">
+        <%= render :partial => 'heading' %>
+          <tbody>
+          <td class="progress progress-striped active">
+            <div class="bar" style="width: 40%;"></div>
+          </td>
+            <% if @adverts.present? %>
+              <%= render :partial => 'advert' , :collection=> @adverts%>
+            <% end %>
+          </tbody>
+       </table>
+    </div>
+  </div>
+<div class="pagination"><%= will_paginate @adverts %></div>
 </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#advert_form").keyup(function(){
+            $.get($(this).attr('action'), $(this).serialize(), null,'script');
+            return false;
+        });
+    })
+</script>
+
+
+
+

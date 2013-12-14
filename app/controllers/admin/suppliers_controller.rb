@@ -1,8 +1,12 @@
-class Admin::SuppliersController < ApplicationController
+class Admin::SuppliersController < AdminController
 
 
   def index
-    @suppliers = Supplier.all
+    @suppliers = Supplier.where(display: true).paginate(per_page: 10, page: params[:page], order: ('created_at DESC'))
+  end
+
+  def inactive
+    @suppliers = Supplier.where(display: false).paginate(per_page: 10, page: params[:page], order: ('created_at DESC'))
   end
 
   def new

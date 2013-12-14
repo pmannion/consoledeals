@@ -1,0 +1,8 @@
+Thanks for your order
+
+Here are you items !
+<table border = "2px solid cadetblue">
+ <td>Order at:<%= @order.created_at.strftime("%d %B %Y") %></td>
+ <td><%= render @order.line_items %></td>
+</table>
+
