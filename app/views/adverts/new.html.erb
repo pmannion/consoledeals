@@ -24,13 +24,13 @@
 
           <div id="labelwrapper">
             <div class="span5">Information</div>
-            <div class="span7"><%= f.input :description, label: false, required: true %>
+            <div class="span7"><%= f.input :description, label: false, required: true , placeholder: "A brief descrition of what you are selling" %>
             </div>
           </div>
 
           <div id="labelwrapper">
             <div class="span5">What is the Price?</div>
-            <div class="span7"><%= f.input :price, label: false, required: true %>
+            <div class="span7"><%= f.input :price, label: false, required: true , placeholder: "e.g. 25.00" %>
             </div>
           </div>
 
@@ -42,14 +42,13 @@
 
           <div id="labelwrapper">
             <div class="span5">Contact details</div>
-            <div class="span7"><%= f.input :phone, label: false, required: true %>
+            <div class="span7"><%= f.input :phone, label: false, required: true, placeholder: "Phone number or Email" %>
             </div>
           </div>
 
           <%= f.submit "Submit advert", class: "btn btn-large btn-success", id: "submit-gift-button" %>
 
-
-      <% end %>
+         <% end %>
         </div>
       </div>
     </div>

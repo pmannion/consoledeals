@@ -59,12 +59,13 @@
         <div class="span12">
             <table class="table table-striped">
               <tbody>
-              <% if @advert.blank? %>
-                <p>You don't have any active adverts</p>
-              <% else %>
-                <%= render :partial => 'advert', :collection => @adverts %>
-              <% end %>
+                <% if @adverts.size < 1 %>
+                 You don't have any active adverts !
+                <% else %>
+                  <%= render :partial => 'advert', :collection => @adverts %>
+                <% end %>
               </tbody>
+              <%= will_paginate @adverts %>
             </table>
         </div>
       </div>

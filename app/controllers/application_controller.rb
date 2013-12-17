@@ -1,10 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :check_not_banned
 
-  def cart_size
-    @cart = curren_cart.count
-  end
+
  private
 
   def current_cart
@@ -23,12 +20,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-
-  def check_not_banned
-    if current_user && current_user.ban
-
-    end
-  end
-
 
 end

@@ -4,74 +4,99 @@
       <div class="span12 push-right">
         <ul>
           <% if @products.blank? %>
-            <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Use the search options to find your perfect console deal</li></h4>
+              <h4>
+                <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Use the search options to find your perfect
+                  console deal
+                </li>
+              </h4>
           <% else %>
-            <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> We have found <%= @products.size %> products based on your search options</li></h4>
+              <h4>
+                <li><%= image_tag('green-thumb.jpg', size: '40x40') %> We have found <%= @products.size %> products
+                  based on your search options
+                </li>
+              </h4>
           <% end %>
-            <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> All products are displayed in order of lowest price</li></h4>
-            <h4><li><%= image_tag('green-thumb.jpg', size: '40x40') %> Consoledeals.com is impartial and will always show you the best prices first</li></h4>
+          <h4>
+            <li><%= image_tag('green-thumb.jpg', size: '40x40') %> All products are displayed in order of lowest price
+            </li>
+          </h4>
+          <h4>
+            <li><%= image_tag('green-thumb.jpg', size: '40x40') %> Consoledeals.com is impartial and will always show
+              you the best prices first
+            </li>
+          </h4>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="row-fluid">
-     <div class="span12">
-       <div class="span2" id="refine_consoles">
-         <div id="divider-gray">
+    <div class="span12">
+      <div class="span2" id="refine_consoles">
+        <div id="divider-gray">
           <h4 id="refine">Refine your search</h4>
-         <%= simple_form_for @giftsearch, url: gift_search_results_path, :method => :post , :html => {:id =>"product_form", :name =>"product_form"}  do |f| %>
-           <h5 class="span10">console format:</h5>
-             <div class="span7">
-               <%= f.collection_select :console_id, Console.all, :id, :console_format, label: false %>
+          <%= simple_form_for @giftsearch, url: gift_search_results_path, :method => :post, :html => {:id => "product_form", :name => "product_form"} do |f| %>
+              <h5 class="span10">console format:</h5>
+
+              <div class="span7">
+                <%= f.collection_select :console_id, Console.all, :id, :console_format, label: false %>
               </div>
 
-             <h5 class="span10">Show Me:</h5>
-               <div class="span7 reduce_field">
-                 <%= f.select :show_games, [['Games & Deals', true],['Just Bundles', false]], label: false, include_blank: 'Please Choose' %>
-               </div>
-               <h5 class="span10">maximum Price:</h5>
-                 <div class="span7">
-                   <%= f.input :max_spend, label: false, required: true %>
-                 </div>
-             <%= f.submit "Search for consoles", class: "btn btn-small btn-success", id: "submit-gift-button" %>
-         <% end %>
+              <h5 class="span10">Show Me:</h5>
+
+              <div class="span7 reduce_field">
+                <%= f.select :show_games, [['Games & Deals', true], ['Just Bundles', false]], label: false, include_blank: 'Please Choose' %>
+              </div>
+              <h5 class="span10">maximum Price:</h5>
+
+              <div class="span7">
+                <div id ="slider">
+                  <br/>
+                  <div id ="amount"></div>
+                </div>
+                <%= f.hidden_field :max_spend, label: false %>
+              </div>
+              <%= f.submit "Search for consoles", class: "btn btn-small btn-success", id: "submit-gift-button" %>
+          <% end %>
         </div>
-       </div>
-       <div class="span10">
+      </div>
+      <div class="span10">
         <div class="tab-pane">
           <table class="table table" id="product_list">
-            <%= form_tag('/compare-products/compare/') do %>
-              <%= render :partial => 'heading' %>
-              <tbody>
-                <% if @products.present? %>
-              <%= render :partial => 'gift' , :collection=> @products%>
-                <% else %>
-                 <div id="empty-partial">
-                   <%= render :partial =>'empty' %>
-                 </div>
-               <% end %>
-              </tbody>
-            </table>
-          <% end %>
-       </div>
-     </div>
-   </div>
- </div>
+            <%= render :partial => 'heading' %>
+            <tbody>
+            <% if @products.present? %>
+                <%= render :partial => 'gift', :collection => @products %>
+            <% else %>
+                <div id="empty-partial">
+                  <%= render :partial => 'empty' %>
+                </div>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    $(document).ready(function() {
-        $("#giftsearch_max_spend").slider({
-            min: 1,
-            max: 10,
-            values: [ 6 ],
-            step: 0.5,
-            slide: function(event, ui) {
+    $(document).ready(function () {
+        $("#slider").slider({
+            min: 25,
+            max: 500,
+            values: $('input#giftsearch_max_spend').val(),
+            step: 25,
+            slide: function (event, ui) {
                 $(this).next('input').val(ui.value);
-                $(this).parent().find('span.slider-value').html(ui.value);
+
+            } ,
+            change: function(event, ui) {
+                $('#hidden').attr('value', ui.value);
             }
         });
+        $( "#amount" ).html( $( "#slider" ).slider( "value" ) );
+
     });
 </script>
 

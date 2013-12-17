@@ -14,8 +14,6 @@ Consoledeals::Application.routes.draw do
 
   #users
   match '/users/:id/' => 'users#show'
-  match '/users/:id/edit/' => 'users#edit'
-  match '/users/:id/update/' => 'users#update'
   match '/users-index/' => 'users#index'
   match '/banned-users/' => 'users#banned'
   match '/ban-this-user/:id/' => 'users#ban_user'
@@ -38,7 +36,6 @@ Consoledeals::Application.routes.draw do
 
   #products
 
-  match '/products/index/' => 'products#index'
   match '/view-product-details/:id/' => 'products#show'
   match '/welcome-to-consoledeals' => 'products#store_front'
 

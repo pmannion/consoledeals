@@ -20,7 +20,7 @@ class Admin::ConsolesController < AdminController
     else
       flash[:alert] = "That console could not be created"
       render 'new'
-      end
+    end
   end
 
   def edit
@@ -41,4 +41,5 @@ class Admin::ConsolesController < AdminController
     flash[:notice] = 'Console has been deleted'
     redirect_to admin_path
   end
+
 end

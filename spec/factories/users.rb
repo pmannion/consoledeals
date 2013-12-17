@@ -1,8 +1,10 @@
 require 'faker'
 
+email = "email"
+
 FactoryGirl.define do
   factory :user do |f|
-   f.email  { Faker::Name.email }
-
+   f.email  { Faker::Internet.email }
+   f.admin false
   end
 end

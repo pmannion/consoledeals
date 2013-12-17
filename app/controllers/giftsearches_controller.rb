@@ -28,27 +28,21 @@ class GiftsearchesController < ApplicationController
         session[:giftsearch_id] = @giftsearch.id
         if @giftsearch.show_games == false
         conditions = Product.order('price ASC')
-        conditions = conditions.where(console_id: @giftsearch.console_id);
-        conditions = conditions.where("price <= ?", @giftsearch.max_spend);
+        conditions = conditions.where(console_id: @giftsearch.console_id)
+        conditions = conditions.where("price <= ?", @giftsearch.max_spend)
         conditions = conditions.where(is_bundle: true)
-        @products = conditions.includes([:supplier], [:console], [:product])
+        @products = conditions.includes([:supplier], [:console])
        end
         if @giftsearch.show_games == true
           conditions = Product.order('price ASC')
           conditions = conditions.where(console_id: @giftsearch.console_id)
           conditions = conditions.where("price <= ?", @giftsearch.max_spend)
-          @products = conditions.includes([:supplier],[:console], [:product])
+          @products = conditions.includes([:supplier],[:console])
         end
       end
     respond_to do |format|
       format.html
       format.js { @products}
-    end
-  end
-
-  def search_adverts
-    if @advert_search.nil?
-      @advert_search = Giftsearch.new
     end
   end
 

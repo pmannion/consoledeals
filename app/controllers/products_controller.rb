@@ -1,11 +1,7 @@
 class ProductsController < ApplicationController
 
   def store_front
-
-  end
-
-  def index
-    @products = Product.where(display: true).include([:line_item], [:supplier])
+     @cart = current_cart
   end
 
   def show

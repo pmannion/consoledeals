@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   before_filter :authenticate_admin, :only => [:index, :edit, :update, :destroy]
   before_filter :authenticate_user! , :on => [:new]
+
   def index
     @orders = Order.where("status_id != 1")
 
@@ -14,6 +15,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   # GET /orders/1.json
+
   def show
     begin
       @cart = current_cart
@@ -97,4 +99,5 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
