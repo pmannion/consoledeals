@@ -7,7 +7,7 @@ Consoledeals::Application.configure do
       domain:   "gmail.com",
       authentication: "plain",
       user_name: "mannion.paul@gmail.com",
-      password: "taekwondo1",
+      password: "password",
       enable_starttls_auto: true
   }
 
