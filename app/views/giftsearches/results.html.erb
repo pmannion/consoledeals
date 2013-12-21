@@ -52,7 +52,7 @@
               <div class="span7">
                 <div id ="slider">
                   <br/>
-                  <div id ="amount"></div>
+                  <div id ="amount">€25</div>
                 </div>
                 <%= f.hidden_field :max_spend, label: false %>
               </div>
@@ -83,20 +83,25 @@
 <script>
     $(document).ready(function () {
         $("#slider").slider({
+            animate: true,
             min: 25,
             max: 500,
             values: $('input#giftsearch_max_spend').val(),
             step: 25,
             slide: function (event, ui) {
                 $(this).next('input').val(ui.value);
-
-            } ,
-            change: function(event, ui) {
-                $('#hidden').attr('value', ui.value);
+                $("#amount").html('&euro;' + ui.value );
             }
+
         });
-        $( "#amount" ).html( $( "#slider" ).slider( "value" ) );
+
+
 
     });
 </script>
+
+
+
+
+
 
