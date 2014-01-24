@@ -12,7 +12,7 @@
      </div>
     </div>
   <div class="row-fluid span12">
-
+    <div id="top-games"></div>
   </div>
 
   <div class="row-fluid span12">
@@ -35,10 +35,29 @@
 
 
 <script>
+
+  xbox_one = [];
+  ps4 = [];
+
+   games = {"xb":[{title:"Call of Duty Ghosts", position: 1},
+                     {title:"Grand theft auto 5", position:2},
+                     {title:"Fifa 14"}, {position:4},
+                     {title:"Gears of War 4", position:5}],
+                "ps4":[{title:"Grand theft auto 5", position:1},
+                     {title:"Elder scrolls skrim", position:2},
+                     {title:"Call of Duty Ghosts", position:3},
+                     {title:"Fifa 14", position:4},
+                     {title:"Metal Gear Solid 5", position:5}]};
+
+
+   for(i=0; i < games["xb"].length; i++){
+      xbox_one.push(games[i]);
+
+   }
+
     $(document).ready(function() {
-           $("#front-bounce").effect( "bounce", {times: 2}, "slow" );
-            });
 
-
+        $("#front-bounce").effect( "bounce", {times: 2}, "slow" );
+      });
 
 </script>

@@ -7,6 +7,8 @@
   <%= f.error_notification %>
 
   <div class="inputs">
+    <%= f.input :user_name, :required => true, :autofocus => true, placeholder: "max. 6 charachters" %>
+
     <%= f.input :email, :required => true, :autofocus => true %>
     <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
     <%= f.input :password_confirmation, :required => false %>

@@ -10,6 +10,14 @@ class Product < ActiveRecord::Base
   before_destroy :ensure_not_refrenced_by_any_line_item
 
 
+  def self.search(search)
+    if search
+      where("name LIKE ?", "%#{search}%")
+    else
+      find(:all)
+    end
+  end
+
   private
 
   def ensure_not_referenced_by_any_line_item

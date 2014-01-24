@@ -2,6 +2,10 @@ class Admin::ProductsController < AdminController
 
   def index
     @products = Product.where(display: true).paginate(per_page: 20,page:params[:page], include: [:supplier, :console], order: ('created_at DESC'))
+    respond_to do |format|
+      format.html
+      format.js { @products }
+    end
   end
 
   def inactive

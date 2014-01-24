@@ -11,16 +11,24 @@
 
 
 //
-//$("#delete_lineitem").click(function(event){
-//    $.ajax({
-//        type: "POST",
-//        url: line_item_path(line_item),
-//        dataType: "json",
-//        data: {"_method":"delete"},
-//        complete: function(){
-//            alert("Deleted successfully");
+//$(document).ready(function(){
+//    $("a #delete_lineitem").click (function(){
+//        if(confirm("Are you sure?")){
+//            var row = $(this).closest("tr").get(0);
+//            $.post(this.href, {_method:'delete'}, null, "script");
+//            $(row).hide();
+//            return false;
+//        } else {
+//            //they clicked no.
+//            return false;
 //        }
-//    });
-//    event.preventDefault();
-//});
 //
+//    });
+//
+//});
+
+
+
+
+
+

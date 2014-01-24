@@ -4,13 +4,27 @@
     <%= link_to "View inactive Products", '/admin/products/inactive', class: 'btn btn-success' %>
   </div>
 
-  <div class="tab-pane push-down">
-    <table class="table table-hover">
+    <table class="table" id= "product_list">
       <%= render partial: 'heading' %>
+      <tbody>
       <%= render partial: 'product', collection: @products %>
+      </tbody>
     </table>
   </div>
+
   <div class="paginate">
     <%= will_paginate @products %>
   </div>
-</div>
+
+
+
+<script>
+    $(document).ready(function(){
+        $("#admin_form").keyup(function(){
+            $.post($(this).attr('action'), $(this).serialize(), null,'script');
+            return false;
+
+        });
+    })
+</script>
+

@@ -182,3 +182,8 @@ li{
 .progress{
     display: none;
 }
+
+#top-games{
+    font-size: 2em;
+    color:red;
+}

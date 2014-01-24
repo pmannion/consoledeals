@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_filter :authenticate_user!, :only => :chatroom
+
   def store_front
      @cart = current_cart
   end
@@ -13,6 +15,10 @@ class ProductsController < ApplicationController
       flash[:alert] = "Oops there is nothing there"
       redirect_to root_path
      end
-   end
+  end
+
+  def chatroom
+    flash.now[:notice] ="Hi #{current_user.user_name} welcome to the chat room, be nice !"
+  end
 
 end

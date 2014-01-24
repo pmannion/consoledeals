@@ -12,6 +12,8 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'prof_gem'
 gem 'bootstrap-will_paginate'
+gem 'faye'
+gem 'thin'
 
 
 

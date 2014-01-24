@@ -12,6 +12,8 @@ Consoledeals::Application.routes.draw do
     get 'logout' => 'devise/sessions#destroy'
   end
 
+  match '/destroy-line-item/:id/' => 'line_items#destroy'
+
   #users
   match '/users/:id/' => 'users#show'
   match '/users-index/' => 'users#index'
@@ -38,6 +40,7 @@ Consoledeals::Application.routes.draw do
 
   match '/view-product-details/:id/' => 'products#show'
   match '/welcome-to-consoledeals' => 'products#store_front'
+  match '/chatroom' => 'products#chatroom', :as=> :chat
 
   #consoles
   match '/admin/consoles/new/' => 'admin/consoles#new'
