@@ -17,6 +17,7 @@ gem 'thin'
 
 
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -42,7 +43,10 @@ group :development, :test do
   gem 'bullet'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
 
+group :production do
+  gem 'pg'
 end
 
 # To use ActiveModel has_secure_password
