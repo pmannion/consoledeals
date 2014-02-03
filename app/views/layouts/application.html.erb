@@ -114,18 +114,19 @@
 
 <script>
     $("#delete_lineitem").click(function(event){
+        event.preventDefault();
         var row = $(this).parents('tr:first');
         $.ajax({
             type: "POST",
-            url: <%= line_items_path(@line_item) %>,
+            url: '/line-items/:id/',
             dataType: "json",
-            data: {"_method":"delete"},
+            data: {method:"delete"},
             complete: function(){
                 alert("Deleted successfully");
                 $(row).remove();
             }
         });
-        event.preventDefault();
+
     });
 
 </script>
